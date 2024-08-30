@@ -7,6 +7,8 @@ h1 {
     font-size: 12vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #d9d99b;
+    border-width: 0.5vh;
+    border-color: #322c13;
 }
 
 .bi-spotify {
@@ -21,6 +23,11 @@ h1 {
     border-color: #322c13;
     border-style: solid;
     border-width: 0.7vh;
+    cursor: pointer;
+}
+
+.Buttons:hover {
+    background-color: #322c13;
 }
 
 #connectButton {

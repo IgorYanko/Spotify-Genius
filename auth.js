@@ -1,7 +1,8 @@
 const clientId = '1fd64948cbdd44d29396ce9aca70ee5d';
 const redirectUri = 'https://igoryanko.github.io/Spotify-Genius/callback.html';
 const scopes = 'user-read-private user-read-email';
-const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}&show_dialog=true`;
+
 
 function redirectToSpotifyAuth() {
     window.location.href = authUrl;
@@ -64,5 +65,6 @@ window.onload = async () => {
         window.location.href = 'callback.html';
     } else {
         console.log('Nenhum código de autorização encontrado. Redirecione o usuário para login.');
+        redirectToSpotifyAuth();
     }
 };

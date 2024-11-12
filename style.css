@@ -1,14 +1,15 @@
 body {
     margin: 0;
-    background-color: #181818;
+    background: rgb(29,185,84);
+    background: radial-gradient(circle, rgba(29,185,84,1) 0%, rgba(14,147,13,1) 100%);
 }
 
 h1 {
     font-size: 12vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #d9d99b;
-    border-width: 0.5vh;
-    border-color: #322c13;
+    background: linear-gradient(135deg, #d9d99b, #94b67f, #d9d99b, #322c13);
+    -webkit-background-clip: text;
+    color: transparent;    
 }
 
 .bi-spotify {

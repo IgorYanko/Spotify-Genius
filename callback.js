@@ -38,7 +38,7 @@ async function createPlaylist(accessToken, userId, name = "Pra você!") {
     return data.id; 
 }
 
-async function addTracksToPlaylist(acessToken, playlistId, trackUris) {
+async function addTracksToPlaylist(accessToken, playlistId, trackUris) {
     const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         method: 'POST',
         headers: {
@@ -56,26 +56,26 @@ const BasedOnYou = document.getElementById('BasedOnYou');
 
 BasedOnYou.addEventListener('click', async function() {
     try {
+        const accessToken = localStorage.getItem('spotifyAccessToken');
+        const userId = localStorage.getItem('spotifyUserId');
+
         if (!accessToken || !userId) {
             console.error('Token de acesso ou ID do usuário ausente!');
             return;
         }
 
         const topTracks = await getUserTopTracks(accessToken, 20, 'medium_term');
-
         const topTracksIds = topTracks.map(track => track.id);
-
         const recommendedTracks = await getRecommendations(accessToken, topTracksIds, 10);
 
         const combinedTracks = [...topTracks, ...recommendedTracks];
         const trackUris = combinedTracks.map(track => track.uri);
 
-        const playlistId = await addTracksToPlaylist(accessToken, playlistId, trackUris);
-
+        const playlistId = await createPlaylist(accessToken, userId);
         const success = await addTracksToPlaylist(accessToken, playlistId, trackUris);
 
         if (success) {
-            console.log("Playlist criada com sucesso!");    
+            console.log("Playlist criada com sucesso!");
         } else {
             console.error("Erro ao adicionar músicas à playlist!");
         }
